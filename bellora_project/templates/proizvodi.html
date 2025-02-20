@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proizvodi - Bellora</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Bellora</h1>
+        <nav>
+            <a href="{% url 'homepage' %}">Početna</a>
+            <a href="{% url 'proizvodi' %}">Proizvodi</a>
+            <a href="{% url 'kosarica' %}">Košarica</a>
+        </nav>
+    </header>
+    <main>
+        <h2>Naši Proizvodi</h2>
+        {% for proizvod in proizvodi %}
+        <div class="proizvod">
+            <img src="{{ proizvod.slika.url }}" alt="{{ proizvod.naziv }}">
+            <h3>{{ proizvod.naziv }}</h3>
+            <p>{{ proizvod.opis }}</p>
+            <p>Cijena: {{ proizvod.cijena }} €</p>
+            <a href="{% url 'dodaj_u_kosaricu' proizvod.id %}">Dodaj u košaricu</a>
+        </div>
+        {% endfor %}
+    </main>
+    <footer>
+        <p>&copy; 2025 Bellora. Sva prava pridržana.</p>
+    </footer>
+</body>
+</html>

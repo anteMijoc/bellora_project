@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Košarica - Bellora</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Bellora</h1>
+        <nav>
+            <a href="{% url 'homepage' %}">Početna</a>
+            <a href="{% url 'proizvodi' %}">Proizvodi</a>
+            <a href="{% url 'kosarica' %}">Košarica</a>
+        </nav>
+    </header>
+    <main>
+        <h2>Vaša Košarica</h2>
+        {% if proizvodi_u_kosarici %}
+        <ul>
+            {% for stavka in proizvodi_u_kosarici %}
+            <li>{{ stavka.proizvod.naziv }} - {{ stavka.kolicina }} kom - {{ stavka.proizvod.cijena }} €</li>
+            {% endfor %}
+        </ul>
+        <p>Ukupna cijena: {{ ukupna_cijena }} €</p>
+        {% else %}
+        <p>Vaša košarica je prazna.</p>
+        {% endif %}
+    </main>
+    <footer>
+        <p>&copy; 2025 Bellora. Sva prava pridržana.</p>
+    </footer>
+</body>
+</html>
